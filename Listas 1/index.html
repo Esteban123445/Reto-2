@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link rel="stylesheet" href="CSS/style.css">
+     <!-- Importamos JQUERY -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+   
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <table class="striped">
+            <!-- Manejo categoria de la tabka -->
+            <thead>
+                <!-- Inserter filas con categorias -->
+                <tr>
+                    <th>Columna1</th>
+                    <th>Columna2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Fila1 info de un solo registro-->
+                <tr>
+                    <td>
+                        <label >Cargar valores por defecto</label>
+                    </td>
+                    <td>
+                        <output id="listaPorDefault"></output>
+                    </td>
+                </tr>
+                <!-- Fila 2 Solicitar valores-->
+                <tr>
+                    <td>
+                        <div class="input-field">
+                            <input type="text" name="nodos" id="nodos">
+                            <label >Ingrese los valores separados por coma</label>
+                        </div>
+                        
+                    </td>
+                    <td>
+                        <!-- Fila3 crear botonsintexto solo icono -->
+                        <a class="btn-floating btn-large waves-effect waves-light blue" onclick="capturaValorInputAnonima()">
+                            <i class="material-icons">add</i>
+                        </a>
+                        <output id="nodosIngresados"></output>
+
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <!-- Crear boton para cargar multiples imagenes -->
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Cargar imagenes</span>
+                                <input type="file" name="files[]" id="files" multiple>
+
+                            </div>
+
+                            <div class="file-path-wrapper" >
+                                <input type="text" class="file-path validate">
+                            </div>
+                        </div>
+                    
+                    </td>
+                    <td>
+                        <output id="list"></output>
+                    </td>
+                </tr>
+                <!-- Fila4  -->
+                <tr>
+                    <td>
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                  <span>Cargar txt</span>
+                                  <input type="file" name="myInput" id="myInput">
+                                </div>
+                                <div class="file-path-wrapper">
+                                  <input class="file-path validate" type="text">
+                                </div>
+                              </div>
+                    </td>
+                    <td>
+                        <label >Contenido del archivo</label>
+                        <output id="ver"></output>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="section">
+            <div class="row center">
+                <div class="col s12">
+                    <button class="btn waves-effect waves-lght btn-large" onclick="listaResultante()">Crear lista </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="section">
+            <div class="row center">
+                <div class="cols4">
+                    <label >Lista creada</label>
+                </div>
+                <div class="cols8">
+                    <output id="verLista"></output>
+                </div>
+
+            </div>
+        </div>
+        <div class="section">
+            <div class="row center">
+                <div class="col s8">
+                    <select class="browser-default" name="functionSelected" id="functionSelected" >
+                        <option value="" disabled selected>Seleccione una opcion</option>
+                        <option value="1">Añadir nodo</option>
+                        <option value="2">Eliminar nodo</option>
+                        <option value="3">Consultar valor de nodo</option>
+                        <option value="4">Eliminar nodo en determinada posición</option>
+                        <option value="5">Modificar valor de un nodo determinado</option>
+                        <option value="6">Añadir nodo en determinada posición</option>
+                        <option value="7">Invertir orden de la lista</option>
+
+                    </select>
+                </div>
+                <div class="col s4">
+                    <p>
+                        <label >
+                            <input type="checkbox"  id="inicio">
+                            <span>Al inicio de la lista</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label >
+                            <input type="checkbox"  id="final">
+                            <span>Al final de la lista</span>
+                        </label>
+                    </p>
+                </div>
+                
+            </div>
+            
+            <div class="row center">
+                <div class="col s2">
+                    <input type="text" name="valorN" id="valorN"> <label for="valorN">Valor nodo</label>
+                </div>
+                <div class="col s2">
+                    <input type="text" name="posicionN" id="posicionN"> <label for="posicionN">Posicion nodo</label>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="row center">
+                <div class="col s12">
+                    <button class="btn waves-effect waves-light btn-large " onclick="showSelected()">Ver lista resultante</button>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="row ">
+                <div class="cols4"> <label >Lista resultante</label></div>
+                <div class="cols8">
+                    <output id="listaFinal"></output>
+                </div>
+
+            </div>
+        </div>
+        <div class="section">
+            <div class="row ">
+                <div class="cols4"> <label >Dato especifico</label></div>
+                <div class="cols8">
+                    <output id="dato"></output>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="JS/listasEnlazadas.js"></script>
+
+</body>
+</html>
